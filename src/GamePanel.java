@@ -70,6 +70,13 @@ public class GamePanel extends JPanel implements ActionListener{
     public void newApple(){
         appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
         appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
+        
+        //makes sure new apple does not get spawned inside body of snake
+        for(int i = bodyParts; i > 0; i--){
+            if((x[i]==appleX)&&(y[i]==appleY)) {
+                newApple();
+            }
+        }
     }
     public void move(){
         for(int i = bodyParts; i>0; i--){
